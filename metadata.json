@@ -1,0 +1,6 @@
+{
+  "name": "KickOff Africa",
+  "description": "Professional Android & Web Application for Football Fans and AFCON Visitors",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
