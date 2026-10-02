@@ -1,12 +1,14 @@
-# AFCON EAST AFRICA — Project Blueprint
+# KickOff Africa — Project Blueprint
 
 ## Product Vision
-AFCON EAST AFRICA is a football companion platform combining live football information, AFCON and East African competitions, news, teams, travel information and fan community features.
+KickOff Africa is a production-oriented African football platform combining live football information, AFCON and African competitions, news, teams, travel information and fan community features.
+
+The product is designed as a real business application. Development-only mock data must remain clearly separated from production data sources and must never be presented as live information.
 
 ## Core Areas
 1. Home — featured matches, live/upcoming matches, latest news and tournament highlights.
 2. Matches — fixtures, live scores, results, match details, H2H, form and statistics.
-3. Tournaments — AFCON, qualifiers and selected East African competitions with groups and knockout stages.
+3. Tournaments — AFCON, qualifiers and selected African competitions with groups and knockout stages.
 4. Teams — national/club teams, squads, profiles, statistics and form.
 5. News — football news organized by competition, team and topic.
 6. Fan Zone — predictions, polls, favourites and future community discussions.
@@ -17,11 +19,13 @@ AFCON EAST AFRICA is a football companion platform combining live football infor
 ## Technical Direction
 - Frontend: React + TypeScript + Vite.
 - UI: existing Tailwind-based styling and Lucide icons.
-- Data: keep current mock data as development fixtures, but isolate it from UI components.
-- API boundary: all future remote data should enter through service interfaces rather than being imported directly into screens.
-- Authentication: current local prototype remains temporary; production authentication will be introduced behind the same application boundary.
+- Data: development mock data is temporary and isolated under `src/data`.
+- API boundary: remote football data must enter through typed service interfaces rather than direct provider imports inside screens.
+- Authentication: the current local prototype is temporary; production authentication will be introduced behind the application boundary.
+- Backend: persistent backend services will provide matches, teams, tournaments, news, users, predictions and notifications.
+- Admin: a protected administration area will manage operational content and business settings.
 - PWA: prepare the application for installation on mobile and desktop.
-- Backend: add only after the frontend data contracts are stable; it will provide matches, teams, tournaments, news, users and notifications.
+- Monetization: prepare controlled placements for advertising, sponsorships and future premium features.
 
 ## Development Milestones
 ### M1 — Foundation
@@ -40,6 +44,7 @@ AFCON EAST AFRICA is a football companion platform combining live football infor
 - Connect API/backend.
 - Replace development-only mock access progressively.
 - Add loading, error and empty states.
+- Validate timestamps, time zones and data freshness.
 
 ### M4 — User & Fan Features
 - Real authentication.
@@ -47,15 +52,18 @@ AFCON EAST AFRICA is a football companion platform combining live football infor
 - Predictions, polls and community features.
 - Notifications.
 
-### M5 — Travel & Monetization
+### M5 — Admin, Travel & Monetization
 - Host-city/stadium information.
+- Protected admin management tools.
 - Sponsored content and advertisement placements.
-- Admin management tools.
+- Business analytics and operational controls.
 
 ### M6 — Production
 - PWA/install experience.
-- Performance and accessibility pass.
+- Security, performance and accessibility pass.
 - Production deployment and monitoring.
+- Backup and recovery procedures.
+- Privacy policy, terms and other required business/legal pages before public launch.
 
 ## Engineering Rules
 - Do not duplicate business logic inside screens.
@@ -63,4 +71,7 @@ AFCON EAST AFRICA is a football companion platform combining live football infor
 - Keep provider/API-specific code inside `src/services`.
 - Keep mock/development data inside `src/data`.
 - UI components should consume application data, not know where it came from.
+- Never describe mock data as live or official data.
+- Never claim affiliation with CAF, FIFA or a host federation unless an actual authorization exists.
+- Store secrets only in server-side environment configuration; never commit API keys.
 - Make incremental commits so each milestone can be reviewed or reverted safely.
