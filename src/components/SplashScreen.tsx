@@ -26,21 +26,18 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onDismiss }) => {
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-gradient-to-b from-emerald-950 via-green-900 to-black text-white p-6 overflow-hidden select-none"
     >
-      {/* Dynamic Background Accents */}
       <div className="absolute -top-24 -left-24 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-amber-500/20 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Top Branding */}
       <div className="w-full flex justify-between items-center text-xs font-semibold tracking-wider text-emerald-300/80 pt-4">
         <span className="flex items-center gap-1.5">
-          <Shield className="w-4 h-4 text-amber-400" /> AFCON OFFICIAL COMPANION
+          <Shield className="w-4 h-4 text-amber-400" /> AFRICAN FOOTBALL PLATFORM
         </span>
         <span className="bg-emerald-800/60 backdrop-blur-md px-2.5 py-1 rounded-full text-emerald-200 border border-emerald-700/50">
-          v1.0.0 M1
+          v0.1.0
         </span>
       </div>
 
-      {/* Hero Visual Logo & Title */}
       <div className="flex flex-col items-center text-center my-auto space-y-6 max-w-sm">
         <motion.div
           initial={{ scale: 0.8, rotate: -10 }}
@@ -68,47 +65,42 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onDismiss }) => {
             KickOff Africa
           </h1>
           <p className="text-sm text-emerald-200/80 font-medium">
-            The Ultimate Football & AFCON Visitor Guide
+            Your Football Home Across Africa
           </p>
         </div>
 
-        {/* Live Countdown Badge */}
         <div className="w-full bg-emerald-900/60 backdrop-blur-md border border-emerald-700/50 rounded-2xl p-4 space-y-2">
           <div className="text-[11px] uppercase tracking-wider text-amber-300 font-bold">
             Countdown to AFCON Kick-Off
           </div>
           <div className="grid grid-cols-4 gap-2 text-center">
-            <div className="bg-emerald-950/80 p-2 rounded-xl border border-emerald-800/50">
-              <span className="text-xl font-black text-white">{countdown.days}</span>
-              <span className="block text-[10px] text-emerald-300/70 uppercase">Days</span>
-            </div>
-            <div className="bg-emerald-950/80 p-2 rounded-xl border border-emerald-800/50">
-              <span className="text-xl font-black text-white">{countdown.hours}</span>
-              <span className="block text-[10px] text-emerald-300/70 uppercase">Hours</span>
-            </div>
-            <div className="bg-emerald-950/80 p-2 rounded-xl border border-emerald-800/50">
-              <span className="text-xl font-black text-white">{countdown.mins}</span>
-              <span className="block text-[10px] text-emerald-300/70 uppercase">Mins</span>
-            </div>
-            <div className="bg-emerald-950/80 p-2 rounded-xl border border-emerald-800/50">
-              <span className="text-xl font-black text-amber-400">{countdown.secs}</span>
-              <span className="block text-[10px] text-emerald-300/70 uppercase">Secs</span>
-            </div>
+            {[
+              ['days', 'Days'],
+              ['hours', 'Hours'],
+              ['mins', 'Mins'],
+              ['secs', 'Secs']
+            ].map(([key, label]) => (
+              <div key={key} className="bg-emerald-950/80 p-2 rounded-xl border border-emerald-800/50">
+                <span className={`text-xl font-black ${key === 'secs' ? 'text-amber-400' : 'text-white'}`}>
+                  {countdown[key as keyof typeof countdown]}
+                </span>
+                <span className="block text-[10px] text-emerald-300/70 uppercase">{label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Bottom Action & Developer Tag */}
       <div className="w-full space-y-4 pb-2 max-w-sm">
         <button
           onClick={onDismiss}
           className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-xl shadow-amber-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
         >
-          Enter Application <ArrowRight className="w-4 h-4" />
+          Enter KickOff Africa <ArrowRight className="w-4 h-4" />
         </button>
 
         <div className="text-center text-[11px] text-emerald-300/80 font-medium">
-          KickOff Africa • Official Host Nation Companion
+          KickOff Africa • Football, News, Fans & Travel
         </div>
       </div>
     </motion.div>
