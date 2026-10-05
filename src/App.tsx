@@ -13,7 +13,6 @@ import { HistoryScreen } from './components/HistoryScreen';
 import { ProfileScreen } from './components/ProfileScreen';
 import { SettingsScreen } from './components/SettingsScreen';
 import { ApkDownloadModal } from './components/ApkDownloadModal';
-import { AuthGateModal } from './components/AuthGateModal';
 import { TeamDetailModal } from './components/TeamDetailModal';
 import { MatchDetailModal } from './components/MatchDetailModal';
 import { ArticleDetailModal } from './components/ArticleDetailModal';
@@ -28,9 +27,7 @@ export default function App() {
   return (
     <div className={`min-h-screen ${vm.appSettings.darkMode ? 'dark' : ''} bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors selection:bg-amber-400 selection:text-black`}>
       {vm.showSplash && <SplashScreen onDismiss={() => vm.setShowSplash(false)} />}
-      {!vm.showSplash && !vm.userProfile.isAuthenticated ? (
-        <AuthGateModal userProfile={vm.userProfile} teams={vm.teams} onRegister={vm.handleRegister} onLogin={vm.handleLogin} onUpdateProfile={vm.updateProfile} />
-      ) : (
+      {!vm.showSplash && (
         <div className={`max-w-md mx-auto min-h-screen flex flex-col relative bg-slate-50 dark:bg-slate-950 shadow-2xl ${vm.appSettings.darkMode ? 'dark' : ''}`}>
           <HeaderBar selectedCity={vm.selectedCity} onSelectCity={vm.setSelectedCity} darkMode={vm.appSettings.darkMode} onToggleDarkMode={() => vm.updateSettings({ darkMode: !vm.appSettings.darkMode })} activeTab={vm.activeTab} onSelectTab={vm.setActiveTab} onOpenApkModal={() => vm.setShowApkModal(true)} searchQuery={vm.searchQuery} onSearchChange={vm.setSearchQuery} />
           <main className="flex-1 px-4 pt-4 overflow-y-auto">
@@ -50,7 +47,7 @@ export default function App() {
       )}
       {vm.showApkModal && <ApkDownloadModal onClose={() => vm.setShowApkModal(false)} />}
       {vm.selectedTeam && <TeamDetailModal team={vm.selectedTeam} allMatches={vm.matches} onClose={() => vm.setSelectedTeam(null)} onSelectMatch={(m) => { vm.setSelectedTeam(null); vm.setSelectedMatch(m); }} />}
-      {vm.selectedMatch && <MatchDetailModal match={vm.selectedMatch} userProfile={vm.userProfile} teams={vm.teams} onClose={() => vm.setSelectedMatch(null)} onCastVote={vm.castMatchVote} onToggleSaveMatch={vm.toggleSaveMatch} onSelectTeamByName={handleSelectTeamByName} />}
+      {vm.selectedMatch && <MatchDetailModal match={vm.selectedMatch} userProfile={vm.userProfile} teams={vm.teams} onClose={() => vm.setSelectedMatch(null)} onCastVote={vm.castMatchVote} onToggleSave={vm.toggleSaveMatch} onSelectTeamByName={handleSelectTeamByName} />}
       {vm.selectedArticle && <ArticleDetailModal article={vm.selectedArticle} onClose={() => vm.setSelectedArticle(null)} isSaved={vm.userProfile.savedArticles?.includes(vm.selectedArticle.id)} onToggleSave={vm.toggleSaveArticle} />}
     </div>
   );
