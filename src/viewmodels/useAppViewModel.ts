@@ -253,7 +253,7 @@ export function useAppViewModel() {
     // Data collections
     teams: TEAMS_DATA,
     filteredTeams,
-    matches: MATCHES_DATA,
+    matches,
     filteredMatches,
     travelSpots: TRAVEL_SPOTS_DATA,
     filteredTravelSpots,
