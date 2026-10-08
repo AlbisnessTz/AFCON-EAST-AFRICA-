@@ -46,10 +46,10 @@ export const MatchesScreen: React.FC<MatchesScreenProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> AFCON Fixtures & Results
+            <Calendar className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> Sports Matches & Results
           </h2>
           <p className="text-xs text-slate-500 dark:text-emerald-300/80">
-            Schedule, fan prediction polls & real-time match details
+            Preview fixtures and fan polls. Live score feeds are not connected yet.
           </p>
         </div>
       </div>
