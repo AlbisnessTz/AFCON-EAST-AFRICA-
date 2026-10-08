@@ -31,6 +31,9 @@ export default function App() {
         <div className={`max-w-md mx-auto min-h-screen flex flex-col relative bg-slate-50 dark:bg-slate-950 shadow-2xl ${vm.appSettings.darkMode ? 'dark' : ''}`}>
           <HeaderBar selectedCity={vm.selectedCity} onSelectCity={vm.setSelectedCity} darkMode={vm.appSettings.darkMode} onToggleDarkMode={() => vm.updateSettings({ darkMode: !vm.appSettings.darkMode })} activeTab={vm.activeTab} onSelectTab={vm.setActiveTab} onOpenApkModal={() => vm.setShowApkModal(true)} searchQuery={vm.searchQuery} onSearchChange={vm.setSearchQuery} />
           <main className="flex-1 px-4 pt-4 overflow-y-auto">
+            <div role="status" className="mb-3 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-[11px] font-medium text-amber-800 dark:text-amber-200">
+              Preview build: fixtures and scores may be sample data. Verified live data is not connected yet.
+            </div>
             {vm.activeTab === 'home' && <HomeScreen userProfile={vm.userProfile} featuredMatch={vm.matches[0]} upcomingMatches={vm.matches.filter((m) => m.status === 'upcoming')} latestNews={vm.news} onSelectTab={vm.setActiveTab} onSelectMatch={vm.setSelectedMatch} onSelectArticle={vm.setSelectedArticle} onSelectTeamByName={handleSelectTeamByName} />}
             {vm.activeTab === 'matches' && <MatchesScreen matches={vm.filteredMatches} teams={vm.teams} userProfile={vm.userProfile} selectedGroup={vm.selectedMatchGroup} onSelectGroup={vm.setSelectedMatchGroup} savedMatches={vm.userProfile.savedMatches} onToggleSaveMatch={vm.toggleSaveMatch} selectedMatch={vm.selectedMatch} onSelectMatch={vm.setSelectedMatch} onSelectTeamByName={handleSelectTeamByName} onCastVote={vm.castMatchVote} />}
             {vm.activeTab === 'competitions' && <CompetitionsScreen onSelectTab={vm.setActiveTab} />}
