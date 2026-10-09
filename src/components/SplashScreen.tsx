@@ -28,7 +28,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onDismiss }) => {
 
       <div className="z-10 flex w-full max-w-sm items-center justify-between pt-4 text-xs font-semibold tracking-wider text-emerald-200/70">
         <span className="flex items-center gap-2">
-          <Globe2 className="h-4 w-4 text-amber-400" /> AFRICA SPORTS PLATFORM
+          <Globe2 className="h-4 w-4 text-amber-400" /> GLOBAL SPORTS PLATFORM
         </span>
         <span className="rounded-full border border-emerald-800/70 bg-emerald-950/70 px-2.5 py-1 text-emerald-200">
           v0.2.0
@@ -62,16 +62,16 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onDismiss }) => {
             SportsLab Africa
           </h1>
           <p className="text-sm font-medium text-emerald-200/80">
-            Your Home for African Sports
+            Your Home for Global Sports
           </p>
         </div>
 
         <div className="w-full rounded-2xl border border-emerald-800/60 bg-emerald-950/50 p-4 backdrop-blur-md">
           <div className="mb-2 text-[11px] font-bold uppercase tracking-wider text-amber-300">
-            Building the future of African sports
+            Building the future of global sports
           </div>
           <p className="text-xs leading-5 text-emerald-100/65">
-            Football first. Scores, teams, news, tournaments, travel and fan experiences in one platform.
+            Football first, followed by global sports scores, teams, news, tournaments, travel and fan experiences.
           </p>
         </div>
       </div>
