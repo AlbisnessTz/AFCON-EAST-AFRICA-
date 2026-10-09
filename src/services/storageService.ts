@@ -20,7 +20,7 @@ export const DEFAULT_PROFILE: UserProfile = {
 
 export const DEFAULT_SETTINGS: AppSettings = {
   language: 'en',
-  darkMode: false,
+  darkMode: true,
   pushMatchReminders: true,
   pushGoalAlerts: true,
   pushBreakingNews: true,
