@@ -61,7 +61,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               Jambo, {userProfile.name}! 👋
             </h2>
             <p className="text-xs text-emerald-200/90 mt-0.5">
-              Your global home for sports scores, fixtures, teams, and African sports culture.
+              Your global home for sports scores, fixtures, teams, and sports culture.
             </p>
           </div>
 
