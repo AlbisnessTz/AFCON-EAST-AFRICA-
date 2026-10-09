@@ -50,3 +50,25 @@ body {
   box-shadow: 0 18px 48px rgba(0, 0, 0, .32), inset 0 1px 0 rgba(255, 255, 255, .035);
   backdrop-filter: blur(18px);
 }
+
+/* Keep dark cards glossy-black rather than flat charcoal/green. */
+.premium-app-shell [class~="dark:bg-slate-900"],
+.premium-app-shell [class~="bg-slate-900"] {
+  background-color: #0b0e14 !important;
+}
+
+.premium-app-shell [class~="dark:bg-slate-950"],
+.premium-app-shell [class~="bg-slate-950"] {
+  background-color: #050609 !important;
+}
+
+.premium-app-shell [class*="dark:border-emerald-800"],
+.premium-app-shell [class*="dark:border-slate-800"] {
+  border-color: rgba(148, 163, 184, .14) !important;
+}
+
+.premium-app-shell input,
+.premium-app-shell select,
+.premium-app-shell textarea {
+  color-scheme: dark;
+}
