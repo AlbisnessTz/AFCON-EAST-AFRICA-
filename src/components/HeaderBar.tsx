@@ -41,7 +41,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-[#050609]/90 backdrop-blur-2xl border-b border-white/10 text-white shadow-[0_8px_32px_rgba(0,0,0,0.38)] transition-colors">
-      <div className="max-w-md mx-auto px-4 py-2.5 flex items-center justify-between gap-2">
+      <div className="w-full max-w-md sm:max-w-2xl lg:max-w-5xl xl:max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-between gap-2">
         {/* Logo & Title */}
         <div 
           onClick={() => onSelectTab('home')}
@@ -131,7 +131,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
 
       {/* Expandable Search Input Bar */}
       {isSearchOpen && (
-        <div className="px-4 pb-2.5 max-w-md mx-auto">
+        <div className="px-4 pb-2.5 w-full max-w-md sm:max-w-2xl lg:max-w-5xl xl:max-w-6xl mx-auto">
           <div className="relative">
             <Search className="w-4 h-4 absolute left-3 top-2.5 text-emerald-400" />
             <input
