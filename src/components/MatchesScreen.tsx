@@ -25,6 +25,10 @@ const GROUPS = ['All', 'Group A', 'Group B', 'Group C', 'Group D', 'Group E'];
 
 export const MatchesScreen: React.FC<MatchesScreenProps> = ({
   matches,
+  liveFootballMatches,
+  liveFootballFeedState,
+  liveFootballFeedMessage,
+  liveFootballFeedFetchedAt,
   teams,
   userProfile,
   selectedGroup,
