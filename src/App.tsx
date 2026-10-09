@@ -28,9 +28,9 @@ export default function App() {
     <div className={`min-h-screen ${vm.appSettings.darkMode ? 'dark premium-app-shell bg-[#030406]' : 'bg-slate-50'} text-slate-900 dark:text-slate-100 font-sans transition-colors selection:bg-sky-300 selection:text-black`}>
       {vm.showSplash && <SplashScreen onDismiss={() => vm.setShowSplash(false)} />}
       {!vm.showSplash && (
-        <div className={`max-w-md mx-auto min-h-screen flex flex-col relative ${vm.appSettings.darkMode ? 'premium-app-shell bg-[#030406] dark' : 'bg-slate-50'} shadow-[0_0_80px_rgba(0,0,0,0.55)]`}>
+        <div className={`w-full max-w-md sm:max-w-2xl lg:max-w-5xl xl:max-w-6xl mx-auto min-h-screen flex flex-col relative ${vm.appSettings.darkMode ? 'premium-app-shell bg-[#030406] dark' : 'bg-slate-50'} shadow-[0_0_80px_rgba(0,0,0,0.55)]`}>
           <HeaderBar selectedCity={vm.selectedCity} onSelectCity={vm.setSelectedCity} darkMode={vm.appSettings.darkMode} onToggleDarkMode={() => vm.updateSettings({ darkMode: !vm.appSettings.darkMode })} activeTab={vm.activeTab} onSelectTab={vm.setActiveTab} onOpenApkModal={() => vm.setShowApkModal(true)} searchQuery={vm.searchQuery} onSearchChange={vm.setSearchQuery} />
-          <main className="flex-1 px-4 pt-4 overflow-y-auto">
+          <main className="flex-1 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 overflow-y-auto">
             <div role="status" className="mb-3 rounded-xl border border-sky-300/20 bg-sky-300/[0.06] px-3 py-2 text-[11px] font-medium text-amber-800 dark:text-slate-300">
               <p className="font-bold text-sky-300">Sports data connection</p>
               {vm.liveApiConnection === 'checking' && <p className="mt-1">Checking backend availability…</p>}
