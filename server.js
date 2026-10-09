@@ -2,9 +2,8 @@ import 'dotenv/config';
 import express from 'express';
 
 const app = express();
-const PORT = Number(process.env.PORT || 8787);
 const API_FOOTBALL_BASE_URL = (process.env.API_FOOTBALL_BASE_URL || 'https://v3.football.api-sports.io').replace(/\/$/, '');
-const LIVE_CACHE_TTL_MS = Math.max(60_000, Number(process.env.LIVE_CACHE_TTL_MS || 120_000));
+const LIVE_CACHE_TTL_MS = Math.max(60_000, Number(process.env.LIVE_CACHE_TTL_MS || 1_200_000));
 
 app.disable('x-powered-by');
 app.use(express.json({ limit: '32kb' }));
@@ -12,7 +11,7 @@ app.use(express.json({ limit: '32kb' }));
 let liveCache = { expiresAt: 0, payload: null };
 
 function mapFixtureStatus(shortCode) {
-  if (['1H', '2H', 'ET', 'P', 'LIVE', 'BT', 'INT'].includes(shortCode)) return 'live';
+  if (['1H', '2H', 'ET', 'P', 'LIVE', 'BT'].includes(shortCode)) return 'live';
   if (['HT'].includes(shortCode)) return 'halftime';
   if (['FT', 'AET', 'PEN'].includes(shortCode)) return 'finished';
   if (['PST', 'SUSP', 'INT'].includes(shortCode)) return 'postponed';
