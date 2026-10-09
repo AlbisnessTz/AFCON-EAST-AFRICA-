@@ -54,10 +54,10 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
           </div>
           <div>
             <span className="font-extrabold text-base tracking-tight bg-gradient-to-r from-white via-emerald-100 to-amber-200 bg-clip-text text-transparent block leading-none">
-              KickOff Africa
+              SportsLab Africa
             </span>
             <span className="text-[10px] text-emerald-300/80 font-medium tracking-wide">
-              AFCON Companion
+              Global Sports Platform
             </span>
           </div>
         </div>
