@@ -43,10 +43,10 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
     <div className="space-y-4 pb-24 animate-fadeIn">
       <div>
         <h2 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-          <Newspaper className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> Football & AFCON Newsroom
+          <Newspaper className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> Global Sports Newsroom
         </h2>
         <p className="text-xs text-slate-500 dark:text-emerald-300/80">
-          Breaking news, player quotes, tactical breakdowns & host city updates
+          Sports headlines, team updates, analysis and culture from around the world
         </p>
       </div>
 
