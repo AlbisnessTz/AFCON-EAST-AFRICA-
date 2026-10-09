@@ -34,7 +34,7 @@ export default function App() {
             <div role="status" className="mb-3 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-[11px] font-medium text-amber-800 dark:text-amber-200">
               <p className="font-bold">Sports data connection</p>
               {vm.liveApiConnection === 'checking' && <p className="mt-1">Checking backend availability…</p>}
-              {vm.liveApiConnection === 'configured' && <p className="mt-1">Backend is reachable and a provider key is configured. Match cards still use preview fixtures until live-feed integration is completed.</p>}
+              {vm.liveApiConnection === 'configured' && <p className="mt-1">Backend is reachable and a provider key is configured. The Matches screen checks the provider feed separately; other fixture cards remain preview data.</p>}
               {vm.liveApiConnection === 'not-configured' && <p className="mt-1">Backend is reachable, but verified live data is not configured. Fixtures and scores remain preview data.</p>}
               {vm.liveApiConnection === 'unreachable' && <p className="mt-1">Sports backend is not reachable from this preview. Fixtures and scores remain preview data.</p>}
             </div>
