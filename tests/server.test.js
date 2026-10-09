@@ -1,6 +1,24 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeLiveFixtures } from '../server.js';
+import app, { normalizeLiveFixtures } from '../server.js';
+import { before, after } from 'node:test';
+
+let server;
+let baseUrl;
+const originalApiKey = process.env.API_FOOTBALL_KEY;
+
+before(async () => {
+  delete process.env.API_FOOTBALL_KEY;
+  server = app.listen(0, '127.0.0.1');
+  await new Promise((resolve) => server.once('listening', resolve));
+  baseUrl = `http://127.0.0.1:${server.address().port}`;
+});
+
+after(async () => {
+  await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+  if (originalApiKey === undefined) delete process.env.API_FOOTBALL_KEY;
+  else process.env.API_FOOTBALL_KEY = originalApiKey;
+});
 
 const fixturePayload = {
   response: [{
@@ -47,4 +65,22 @@ test('drops incomplete fixtures rather than inventing identifiers', () => {
 
 test('rejects an unexpected provider response shape', () => {
   assert.throws(() => normalizeLiveFixtures({ errors: ['invalid key'] }), /unexpected response shape/);
+});
+
+test('live endpoint reports unavailable when the server key is not configured', async () => {
+  const response = await fetch(`${baseUrl}/api/sports/football/live`);
+  const body = await response.json();
+  assert.equal(response.status, 503);
+  assert.equal(body.dataStatus, 'unavailable');
+  assert.equal(body.error.code, 'LIVE_DATA_NOT_CONFIGURED');
+});
+
+test('health endpoint does not expose provider credentials', async () => {
+  process.env.API_FOOTBALL_KEY = 'test-secret-that-must-not-be-returned';
+  const response = await fetch(`${baseUrl}/api/health`);
+  const body = await response.json();
+  assert.equal(response.status, 200);
+  assert.equal(body.liveDataConfigured, true);
+  assert.equal(JSON.stringify(body).includes('test-secret-that-must-not-be-returned'), false);
+  delete process.env.API_FOOTBALL_KEY;
 });
