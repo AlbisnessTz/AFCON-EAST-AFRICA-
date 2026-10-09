@@ -56,7 +56,7 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({
 
   const handleShare = (item: HistoryItem) => {
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(`${item.title} - ${item.summary} (Discovered on KickOff Africa)`);
+      navigator.clipboard.writeText(`${item.title} - ${item.summary} (Discovered on SportsLab Africa)`);
       setCopiedShare(true);
       setTimeout(() => setCopiedShare(false), 2500);
     }
@@ -104,13 +104,13 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({
         </div>
         <div className="relative z-10 space-y-2">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-black uppercase tracking-wider border border-amber-400/40">
-            <Compass className="w-3.5 h-3.5" /> East Africa Pamoja AFCON 2027
+            <Compass className="w-3.5 h-3.5" /> AFRICA • SPORT • CULTURE
           </div>
           <h1 className="text-xl font-black tracking-tight text-white flex items-center gap-2">
             History & Tourist Attractions
           </h1>
           <p className="text-xs text-emerald-100/90 leading-relaxed max-w-sm">
-            Discover historic monuments, ancient kingdoms, founding fathers, natural wonders, game reserves, and top tourist destinations across <strong>Tanzania 🇹🇿</strong>, <strong>Kenya 🇰🇪</strong>, and <strong>Uganda 🇺🇬</strong>.
+            Discover historic monuments, ancient kingdoms, natural wonders, cultural heritage, and notable destinations across <strong>Tanzania 🇹🇿</strong>, <strong>Kenya 🇰🇪</strong>, and <strong>Uganda 🇺🇬</strong>.
           </p>
         </div>
       </div>

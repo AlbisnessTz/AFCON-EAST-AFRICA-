@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { Match, Team, UserProfile } from '../types';
-import { Calendar, MapPin, Bookmark, BookmarkCheck, Vote, ChevronRight } from 'lucide-react';
+import { Calendar, MapPin, Bookmark, BookmarkCheck, Vote, ChevronRight, Radio, AlertCircle, Clock3 } from 'lucide-react';
+import type { LiveMatch } from '../services/sportsDataEngine';
 
 interface MatchesScreenProps {
   matches: Match[];
+  liveFootballMatches: LiveMatch[];
+  liveFootballFeedState: 'loading' | 'available' | 'empty' | 'unavailable';
+  liveFootballFeedMessage: string;
+  liveFootballFeedFetchedAt?: string;
   teams: Team[];
   userProfile: UserProfile;
   selectedGroup: string;
@@ -20,6 +25,10 @@ const GROUPS = ['All', 'Group A', 'Group B', 'Group C', 'Group D', 'Group E'];
 
 export const MatchesScreen: React.FC<MatchesScreenProps> = ({
   matches,
+  liveFootballMatches,
+  liveFootballFeedState,
+  liveFootballFeedMessage,
+  liveFootballFeedFetchedAt,
   teams,
   userProfile,
   selectedGroup,
@@ -46,13 +55,66 @@ export const MatchesScreen: React.FC<MatchesScreenProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> AFCON Fixtures & Results
+            <Calendar className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> Sports Matches & Results
           </h2>
           <p className="text-xs text-slate-500 dark:text-emerald-300/80">
-            Schedule, fan prediction polls & real-time match details
+            Verified provider feed is shown separately from preview fixtures below.
           </p>
         </div>
       </div>
+
+      {/* Verified provider feed is kept separate from sample fixtures and polls. */}
+      <section className="rounded-2xl border border-emerald-500/30 bg-slate-900 p-3 text-white space-y-3" aria-live="polite">
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="flex items-center gap-2 text-sm font-black">
+            <Radio className="h-4 w-4 text-emerald-400" />
+            Verified live football feed
+          </h3>
+          <span className={`rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide ${
+            liveFootballFeedState === 'available' ? 'bg-emerald-500/20 text-emerald-300' :
+            liveFootballFeedState === 'empty' ? 'bg-slate-700 text-slate-300' :
+            'bg-amber-500/15 text-amber-200'
+          }`}>
+            {liveFootballFeedState === 'available' ? 'Provider data' :
+             liveFootballFeedState === 'loading' ? 'Checking' :
+             liveFootballFeedState === 'empty' ? 'No live fixtures' : 'Unavailable'}
+          </span>
+        </div>
+        <p className="text-xs leading-relaxed text-slate-300">{liveFootballFeedMessage}</p>
+        {liveFootballFeedState === 'available' && (
+          <div className="space-y-2">
+            {liveFootballMatches.map((match) => (
+              <div key={match.id} className="rounded-xl border border-slate-700 bg-slate-800/80 p-3">
+                <div className="mb-2 flex items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <p className="truncate text-[11px] font-semibold text-slate-300">{match.competition.name}{match.competition.country ? ` · ${match.competition.country}` : ''}</p>
+                    <p className="mt-0.5 text-[10px] text-slate-400">{match.state === 'live' ? 'LIVE' : match.state === 'halftime' ? 'HALF-TIME' : match.state.toUpperCase()}</p>
+                  </div>
+                  {match.state === 'live' && <span className="flex shrink-0 items-center gap-1 text-[10px] font-black text-red-300"><span className="h-1.5 w-1.5 rounded-full bg-red-400" /> LIVE</span>}
+                </div>
+                <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2">
+                  <span className="truncate text-xs font-bold">{match.home.name}</span>
+                  <span className="rounded-lg bg-slate-950 px-3 py-1 text-base font-black tabular-nums">
+                    {match.homeScore ?? '–'} : {match.awayScore ?? '–'}
+                  </span>
+                  <span className="truncate text-right text-xs font-bold">{match.away.name}</span>
+                </div>
+                <p className="mt-2 flex items-center gap-1 text-[10px] text-slate-400">
+                  <Clock3 className="h-3 w-3" />
+                  {new Date(match.startTime).toLocaleString()}
+                  {match.source?.provider ? ` · ${match.source.provider}` : ''}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+        {liveFootballFeedFetchedAt && (
+          <p className="text-[10px] text-slate-400">Retrieved: {new Date(liveFootballFeedFetchedAt).toLocaleString()}</p>
+        )}
+        {liveFootballFeedState === 'unavailable' && (
+          <p className="flex items-start gap-1.5 text-[10px] text-amber-200/90"><AlertCircle className="mt-0.5 h-3 w-3 shrink-0" /> Sample fixtures below are not live provider data.</p>
+        )}
+      </section>
 
       {/* Match Status Tabs */}
       <div className="grid grid-cols-4 gap-1.5 p-1 bg-slate-100 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-emerald-800/60">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
   Trophy, 
   Calendar, 
@@ -37,18 +37,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onSelectArticle,
   onSelectTeamByName
 }) => {
-  const [countdown, setCountdown] = useState({ days: 342, hours: 14, mins: 28, secs: 45 });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev.secs > 0) return { ...prev, secs: prev.secs - 1 };
-        return { ...prev, secs: 59, mins: prev.mins > 0 ? prev.mins - 1 : 59 };
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
   const quickButtons = [
     { label: 'News', tab: 'news' as TabType, icon: Newspaper, bg: 'from-blue-600 to-indigo-700' },
     { label: 'Teams', tab: 'teams' as TabType, icon: Shield, bg: 'from-amber-600 to-amber-700' },
@@ -61,19 +49,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   return (
     <div className="space-y-6 pb-24 animate-fadeIn">
       {/* Welcome Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-900 via-green-800 to-emerald-950 p-5 text-white shadow-xl border border-emerald-700/50">
-        <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
+      <div className="relative overflow-hidden rounded-3xl bg-[radial-gradient(ellipse_at_top_right,rgba(56,189,248,0.15),transparent_48%),linear-gradient(135deg,#141923_0%,#080a0f_52%,#030406_100%)] p-5 text-white shadow-[0_24px_60px_rgba(0,0,0,0.38)] border border-white/10">
+        <div className="absolute top-0 right-0 w-48 h-48 bg-sky-400/[0.09] rounded-full blur-2xl pointer-events-none" />
         
         <div className="flex items-start justify-between gap-3 relative z-10">
           <div>
-            <div className="flex items-center gap-1.5 text-xs text-amber-300 font-semibold mb-1">
-              <Sparkles className="w-3.5 h-3.5" /> Welcome to East Africa AFCON
+            <div className="flex items-center gap-1.5 text-xs text-sky-300 font-semibold mb-1">
+              <Sparkles className="w-3.5 h-3.5" /> Welcome to SportsLab Africa
             </div>
             <h2 className="text-xl font-black text-white tracking-tight">
               Jambo, {userProfile.name}! 👋
             </h2>
-            <p className="text-xs text-emerald-200/90 mt-0.5">
-              Your official companion for Tanzania, Kenya & Uganda host fixtures & travel guide.
+            <p className="text-xs text-slate-400 mt-0.5">
+              Your global home for sports scores, fixtures, teams, and sports culture.
             </p>
           </div>
 
@@ -86,37 +74,26 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
         </div>
 
-        {/* Live AFCON Countdown Strip */}
-        <div className="mt-4 pt-3 border-t border-emerald-700/60 flex items-center justify-between">
-          <div className="text-[11px] font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1">
-            <Trophy className="w-3.5 h-3.5" /> Tournament Kick-Off
+        {/* Data integration status: do not imply a verified tournament countdown. */}
+        <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between gap-3">
+          <div className="text-[11px] font-bold text-sky-300 uppercase tracking-wider flex items-center gap-1">
+            <Trophy className="w-3.5 h-3.5" /> Global sports coverage
           </div>
-          <div className="flex items-center gap-2 text-xs font-black">
-            <span className="bg-emerald-950/80 px-2 py-0.5 rounded-lg border border-emerald-700/50">
-              {countdown.days}d
-            </span>
-            <span className="bg-emerald-950/80 px-2 py-0.5 rounded-lg border border-emerald-700/50">
-              {countdown.hours}h
-            </span>
-            <span className="bg-emerald-950/80 px-2 py-0.5 rounded-lg border border-emerald-700/50">
-              {countdown.mins}m
-            </span>
-            <span className="bg-emerald-950/80 px-2 py-0.5 rounded-lg border border-emerald-700/50 text-amber-400">
-              {countdown.secs}s
-            </span>
-          </div>
+          <span className="text-[10px] font-semibold text-slate-400 text-right">
+            Preview mode · live data integration in progress
+          </span>
         </div>
       </div>
 
       {/* Featured Match Card */}
       <div className="space-y-2">
         <div className="flex items-center justify-between px-1">
-          <h3 className="text-sm font-bold text-slate-800 dark:text-emerald-100 flex items-center gap-1.5">
-            <Flame className="w-4 h-4 text-amber-500 fill-amber-500" /> Featured Blockbuster Match
+          <h3 className="text-sm font-bold text-slate-100 flex items-center gap-1.5">
+            <Flame className="w-4 h-4 text-amber-500 fill-amber-500" /> Featured Match
           </h3>
           <button
             onClick={() => onSelectTab('matches')}
-            className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline flex items-center gap-0.5"
+            className="text-xs font-semibold text-sky-300 hover:underline flex items-center gap-0.5"
           >
             All Matches <ChevronRight className="w-3.5 h-3.5" />
           </button>
@@ -125,14 +102,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         {featuredMatch && (
           <div
             onClick={() => onSelectMatch(featuredMatch)}
-            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-emerald-800/80 rounded-2xl p-4 shadow-md hover:shadow-lg transition-all cursor-pointer space-y-3 relative overflow-hidden group"
+            className="bg-gradient-to-br from-[#151922] via-[#0b0e14] to-[#06070a] border border-white/10 rounded-2xl p-4 shadow-[0_16px_42px_rgba(0,0,0,0.3)] hover:border-sky-300/25 hover:shadow-[0_18px_45px_rgba(0,0,0,0.45)] transition-all cursor-pointer space-y-3 relative overflow-hidden group"
           >
-            <div className="flex items-center justify-between text-xs font-bold text-slate-500 dark:text-emerald-300">
-              <span className="px-2 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+            <div className="flex items-center justify-between text-xs font-bold text-slate-400">
+              <span className="px-2 py-0.5 rounded-md bg-white/[0.05] text-slate-300 border border-white/10">
                 {featuredMatch.group}
               </span>
-              <span className="flex items-center gap-1 text-red-600 font-extrabold animate-pulse">
-                <span className="w-2 h-2 rounded-full bg-red-600 inline-block" /> LIVE NOW
+              <span className={`flex items-center gap-1 font-extrabold ${featuredMatch.status === 'live' ? 'text-red-600 animate-pulse' : 'text-slate-500 dark:text-emerald-300'}`}>
+                {featuredMatch.status === 'live' && <span className="w-2 h-2 rounded-full bg-red-600 inline-block" />}
+                {featuredMatch.status === 'live' ? 'LIVE' : featuredMatch.status === 'finished' ? 'FULL TIME' : 'SCHEDULED PREVIEW'}
               </span>
             </div>
 
@@ -156,10 +134,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
               {/* Live Score */}
               <div className="flex flex-col items-center justify-center w-1/5">
-                <div className="text-2xl font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-3 py-1 rounded-xl border border-amber-200 dark:border-amber-800/50">
+                <div className="text-2xl font-black text-sky-300 bg-sky-400/[0.08] px-3 py-1 rounded-xl border border-sky-300/20">
                   {featuredMatch.homeScore} - {featuredMatch.awayScore}
                 </div>
-                <span className="text-[10px] text-slate-400 dark:text-emerald-400/80 font-medium mt-1">
+                <span className="text-[10px] text-slate-500 font-medium mt-1">
                   67&apos; 2nd Half
                 </span>
               </div>
@@ -182,11 +160,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-xs text-slate-500 dark:text-emerald-300/80 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
               <span className="flex items-center gap-1 truncate max-w-[200px]">
-                <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" /> {featuredMatch.stadium ? `${featuredMatch.stadium}, ${featuredMatch.city}` : featuredMatch.city}
+                <MapPin className="w-3.5 h-3.5 text-sky-300 shrink-0" /> {featuredMatch.stadium ? `${featuredMatch.stadium}, ${featuredMatch.city}` : featuredMatch.city}
               </span>
-              <span className="text-amber-600 dark:text-amber-400 font-bold flex items-center gap-0.5">
+              <span className="text-sky-300 font-bold flex items-center gap-0.5">
                 View Match Center <ArrowUpRight className="w-3.5 h-3.5" />
               </span>
             </div>

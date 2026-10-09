@@ -25,10 +25,10 @@ export const TeamsScreen: React.FC<TeamsScreenProps> = ({
     <div className="space-y-4 pb-24 animate-fadeIn">
       <div>
         <h2 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-          <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> AFCON Participating Nations
+          <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> Teams & National Sides
         </h2>
         <p className="text-xs text-slate-500 dark:text-emerald-300/80">
-          Click any nation for full squad list, tactics, group stats & fixtures
+          Explore teams, squads, form and fixtures as global sports coverage expands.
         </p>
       </div>
 
