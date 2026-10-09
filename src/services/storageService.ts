@@ -111,7 +111,15 @@ export const StorageService = {
   getSettings(): AppSettings {
     try {
       const stored = localStorage.getItem(SETTINGS_KEY);
-      return stored ? JSON.parse(stored) : DEFAULT_SETTINGS;
+      if (!stored) return DEFAULT_SETTINGS;
+      const parsed = JSON.parse(stored);
+      // One-time migration from the former green/light theme to the new obsidian theme.
+      if (parsed.themeVersion !== 1) {
+        const migrated = { ...DEFAULT_SETTINGS, ...parsed, darkMode: true, themeVersion: 1 };
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(migrated));
+        return migrated;
+      }
+      return { ...DEFAULT_SETTINGS, ...parsed };
     } catch {
       return DEFAULT_SETTINGS;
     }
