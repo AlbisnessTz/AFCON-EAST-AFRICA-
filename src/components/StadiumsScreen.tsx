@@ -12,10 +12,10 @@ export const StadiumsScreen: React.FC<StadiumsScreenProps> = ({ stadiums, onSele
     <div className="space-y-4 pb-24 animate-fadeIn">
       <div>
         <h2 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-          <Building2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> AFCON Official Stadiums
+          <Building2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> Stadiums & Arenas
         </h2>
         <p className="text-xs text-slate-500 dark:text-emerald-300/80">
-          World-class football arenas in Tanzania, Kenya, and Uganda
+          Explore sports venues, host cities and arena history. Current listings are an early regional preview.
         </p>
       </div>
 
