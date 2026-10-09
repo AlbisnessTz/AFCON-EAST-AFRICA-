@@ -17,11 +17,13 @@ import {
   STADIUMS_DATA 
 } from '../data/mockData';
 import { StorageService } from '../services/storageService';
+import { checkLiveApiHealth, type LiveApiConnectionState } from '../services/liveSportsService';
 
 export function useAppViewModel() {
   const [activeTab, setActiveTab] = useState<TabType>('home');
   const [showSplash, setShowSplash] = useState<boolean>(true);
   const [showApkModal, setShowApkModal] = useState<boolean>(false);
+  const [liveApiConnection, setLiveApiConnection] = useState<LiveApiConnectionState>('checking');
 
   // User Profile & Settings state
   const [userProfile, setUserProfile] = useState<UserProfile>(() => StorageService.getProfile());
@@ -48,6 +50,17 @@ export function useAppViewModel() {
       setShowSplash(false);
     }, 2400);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Check backend availability without treating sample fixtures as live data.
+  useEffect(() => {
+    let active = true;
+    checkLiveApiHealth().then((state) => {
+      if (active) setLiveApiConnection(state);
+    });
+    return () => {
+      active = false;
+    };
   }, []);
 
   // Sync dark mode class to documentElement
@@ -217,6 +230,7 @@ export function useAppViewModel() {
     setShowSplash,
     showApkModal,
     setShowApkModal,
+    liveApiConnection,
 
     // User & Preferences
     userProfile,
