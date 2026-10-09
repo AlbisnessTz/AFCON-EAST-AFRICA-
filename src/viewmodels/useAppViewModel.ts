@@ -250,6 +250,7 @@ export function useAppViewModel() {
     showApkModal,
     setShowApkModal,
     liveApiConnection,
+    liveFootballFeed,
 
     // User & Preferences
     userProfile,
