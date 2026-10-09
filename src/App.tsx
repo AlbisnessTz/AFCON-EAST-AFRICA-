@@ -25,14 +25,14 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen ${vm.appSettings.darkMode ? 'dark' : ''} bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors selection:bg-amber-400 selection:text-black`}>
+    <div className={`min-h-screen ${vm.appSettings.darkMode ? 'dark premium-app-shell bg-[#030406]' : 'bg-slate-50'} text-slate-900 dark:text-slate-100 font-sans transition-colors selection:bg-sky-300 selection:text-black`}>
       {vm.showSplash && <SplashScreen onDismiss={() => vm.setShowSplash(false)} />}
       {!vm.showSplash && (
-        <div className={`max-w-md mx-auto min-h-screen flex flex-col relative bg-slate-50 dark:bg-slate-950 shadow-2xl ${vm.appSettings.darkMode ? 'dark' : ''}`}>
+        <div className={`max-w-md mx-auto min-h-screen flex flex-col relative ${vm.appSettings.darkMode ? 'premium-app-shell bg-[#030406] dark' : 'bg-slate-50'} shadow-[0_0_80px_rgba(0,0,0,0.55)]`}>
           <HeaderBar selectedCity={vm.selectedCity} onSelectCity={vm.setSelectedCity} darkMode={vm.appSettings.darkMode} onToggleDarkMode={() => vm.updateSettings({ darkMode: !vm.appSettings.darkMode })} activeTab={vm.activeTab} onSelectTab={vm.setActiveTab} onOpenApkModal={() => vm.setShowApkModal(true)} searchQuery={vm.searchQuery} onSearchChange={vm.setSearchQuery} />
           <main className="flex-1 px-4 pt-4 overflow-y-auto">
-            <div role="status" className="mb-3 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-[11px] font-medium text-amber-800 dark:text-amber-200">
-              <p className="font-bold">Sports data connection</p>
+            <div role="status" className="mb-3 rounded-xl border border-sky-300/20 bg-sky-300/[0.06] px-3 py-2 text-[11px] font-medium text-amber-800 dark:text-slate-300">
+              <p className="font-bold text-sky-300">Sports data connection</p>
               {vm.liveApiConnection === 'checking' && <p className="mt-1">Checking backend availability…</p>}
               {vm.liveApiConnection === 'configured' && <p className="mt-1">Backend is reachable and a provider key is configured. The Matches screen checks the provider feed separately; other fixture cards remain preview data.</p>}
               {vm.liveApiConnection === 'not-configured' && <p className="mt-1">Backend is reachable, but verified live data is not configured. Fixtures and scores remain preview data.</p>}
