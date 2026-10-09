@@ -15,7 +15,7 @@ const statusLabel: Record<CompetitionSummary['status'], string> = {
 export const CompetitionsScreen: React.FC<CompetitionsScreenProps> = ({ onSelectTab }) => {
   return (
     <div className="space-y-5 pb-28">
-      <section className="rounded-3xl bg-gradient-to-br from-emerald-950 via-emerald-900 to-slate-950 p-5 text-white shadow-xl border border-emerald-800/60">
+      <section className="rounded-3xl bg-[radial-gradient(ellipse_at_top_right,rgba(56,189,248,0.13),transparent_45%),linear-gradient(135deg,#141923,#07090d_70%,#030406)] p-5 text-white shadow-xl border border-white/10">
         <div className="flex items-center gap-3 mb-3">
           <div className="p-2.5 rounded-2xl bg-amber-400 text-slate-950">
             <Trophy className="w-6 h-6" />
@@ -25,18 +25,18 @@ export const CompetitionsScreen: React.FC<CompetitionsScreenProps> = ({ onSelect
             <h1 className="text-2xl font-black">Competitions</h1>
           </div>
         </div>
-        <p className="text-sm text-emerald-100/80 leading-relaxed">
-          Follow African football competitions from one place. Live scores, standings, fixtures and detailed match data will be connected through the production data layer.
+        <p className="text-sm text-slate-400 leading-relaxed">
+          Explore competitions across world sports. Verified scores, standings, fixtures and detailed match data depend on the production data connection.
         </p>
       </section>
 
       <div className="grid grid-cols-2 gap-3">
-        <button onClick={() => onSelectTab('matches')} className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 text-left shadow-sm">
+        <button onClick={() => onSelectTab('matches')} className="rounded-2xl bg-[#0b0e14] border border-white/10 p-4 text-left shadow-sm">
           <CalendarDays className="w-5 h-5 text-amber-500 mb-2" />
           <p className="font-bold">Fixtures</p>
-          <p className="text-xs text-slate-500 mt-1">Upcoming & results</p>
+          <p className="text-xs text-slate-400 mt-1">Upcoming & results</p>
         </button>
-        <button onClick={() => onSelectTab('teams')} className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 text-left shadow-sm">
+        <button onClick={() => onSelectTab('teams')} className="rounded-2xl bg-[#0b0e14] border border-white/10 p-4 text-left shadow-sm">
           <Users className="w-5 h-5 text-emerald-500 mb-2" />
           <p className="font-bold">Teams</p>
           <p className="text-xs text-slate-500 mt-1">National & club teams</p>
@@ -60,7 +60,7 @@ export const CompetitionsScreen: React.FC<CompetitionsScreenProps> = ({ onSelect
                 {statusLabel[competition.status]}
               </span>
             </div>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">{competition.description}</p>
+            <p className="text-sm text-slate-400 mt-3 leading-relaxed">{competition.description}</p>
             <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs">
               <span className="text-slate-500">{competition.format}</span>
               <span className="flex items-center gap-1 font-semibold text-emerald-700 dark:text-emerald-300">{competition.teamsCount} teams <ChevronRight className="w-3.5 h-3.5" /></span>
