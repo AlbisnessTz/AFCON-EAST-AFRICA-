@@ -44,7 +44,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
     <div className="space-y-4 pb-24 animate-fadeIn">
       <div>
         <h2 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-          <Settings className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> System Settings & Preferences
+          <Settings className="w-5 h-5 text-sky-300 dark:text-emerald-400" /> System Settings & Preferences
         </h2>
         <p className="text-xs text-slate-500 dark:text-emerald-300/80">
           Configure notifications, dark mode, data saver & privacy options
@@ -89,7 +89,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
           {/* Match Reminders */}
           <div className="flex items-center justify-between text-xs">
             <div className="flex items-center gap-2 text-slate-700 dark:text-emerald-100">
-              <Bell className="w-4 h-4 text-emerald-600" /> Match Kick-Off Reminders
+              <Bell className="w-4 h-4 text-sky-300" /> Match Kick-Off Reminders
             </div>
             <input
               type="checkbox"
@@ -164,7 +164,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
           onClick={() => setActiveModal('about')}
           className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 text-xs font-semibold text-slate-800 dark:text-emerald-100 transition-colors"
         >
-          <span className="flex items-center gap-2"><Info className="w-4 h-4 text-emerald-600" /> About KickOff Africa</span>
+          <span className="flex items-center gap-2"><Info className="w-4 h-4 text-sky-300" /> About SportsLab Africa</span>
           <span className="text-slate-400">→</span>
         </button>
 
@@ -191,16 +191,16 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
           <div className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-3xl p-5 w-full max-w-sm border border-slate-200 dark:border-emerald-800 shadow-2xl space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="font-extrabold text-sm flex items-center gap-2">
-                <Info className="w-4 h-4 text-emerald-600" /> About KickOff Africa
+                <Info className="w-4 h-4 text-sky-300" /> About SportsLab Africa
               </h3>
               <button onClick={() => setActiveModal(null)} className="p-1 text-slate-400">
                 <X className="w-5 h-5" />
               </button>
             </div>
             <p className="text-xs text-slate-600 dark:text-emerald-200/90 leading-relaxed">
-              KickOff Africa is a premier official companion application designed for football fans, host nation visitors, and media covering AFCON 2027 in Tanzania 🇹🇿, Kenya 🇰🇪, and Uganda 🇺🇬.
+              SportsLab Africa is a global sports platform for scores, fixtures, teams, sports venues, travel, and cultural history. Live-data availability depends on configured providers.
             </p>
-            <div className="text-[11px] p-3 bg-emerald-950 text-emerald-100 rounded-xl space-y-1">
+            <div className="text-[11px] p-3 bg-[#080b11] text-slate-200 rounded-xl space-y-1">
               <div>App Release: <span className="font-bold text-amber-400">v1.0.0 Official Production</span></div>
               <div>Coverage: <span className="font-bold text-amber-400">Tanzania • Kenya • Uganda</span></div>
               <div>Platform: <span className="font-bold text-emerald-300">Android PWA & Web Client</span></div>
@@ -242,7 +242,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               </button>
               {feedbackSent && (
                 <div className="p-2 bg-emerald-100 text-emerald-900 text-xs text-center font-bold rounded-lg flex items-center justify-center gap-1">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Thank you! Feedback sent.
+                  <CheckCircle2 className="w-4 h-4 text-sky-300" /> Thank you! Feedback sent.
                 </div>
               )}
             </form>
@@ -262,7 +262,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               </button>
             </div>
             <p className="text-xs text-slate-600 dark:text-emerald-200/90 leading-relaxed">
-              KickOff Africa respects user privacy. No personal data is transmitted to unauthorized third parties. All profile preferences are safely persisted on your client device.
+              SportsLab Africa is designed to respect user privacy. No personal data is transmitted to unauthorized third parties. All profile preferences are safely persisted on your client device.
             </p>
             <button
               onClick={() => setActiveModal(null)}
