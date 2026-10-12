@@ -10,7 +10,7 @@ interface NewsScreenProps {
   onSelectArticle: (article: NewsArticle | null) => void;
 }
 
-const CATEGORIES = ['All', 'AFCON 2026', 'Team News', 'Tactical Analysis', 'Travel & Hospitality'];
+const CATEGORIES = ['All', 'World Football', 'Team News', 'Tactical Analysis', 'Travel & Hospitality'];
 
 export const NewsScreen: React.FC<NewsScreenProps> = ({
   news,
