@@ -72,3 +72,17 @@ body {
 .premium-app-shell textarea {
   color-scheme: dark;
 }
+
+/* Final dark-theme guardrails for older screens still using legacy utility classes. */
+.premium-app-shell [class*="dark:bg-emerald-950"] {
+  background-color: #080b11 !important;
+}
+.premium-app-shell [class*="dark:bg-emerald-900"] {
+  background-color: #0b0e14 !important;
+}
+.premium-app-shell [class*="dark:border-emerald-800"] {
+  border-color: rgba(148, 163, 184, .14) !important;
+}
+.premium-app-shell [class*="dark:text-emerald-"] {
+  color: #a7b3c5 !important;
+}
