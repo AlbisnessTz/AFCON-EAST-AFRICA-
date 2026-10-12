@@ -17,11 +17,19 @@ import {
   STADIUMS_DATA 
 } from '../data/mockData';
 import { StorageService } from '../services/storageService';
+import { checkLiveApiHealth, type LiveApiConnectionState } from '../services/liveSportsService';
+import { fetchLiveFootballMatches, type LiveFootballFeedResult } from '../services/liveFootballFeedService';
 
 export function useAppViewModel() {
   const [activeTab, setActiveTab] = useState<TabType>('home');
   const [showSplash, setShowSplash] = useState<boolean>(true);
   const [showApkModal, setShowApkModal] = useState<boolean>(false);
+  const [liveApiConnection, setLiveApiConnection] = useState<LiveApiConnectionState>('checking');
+  const [liveFootballFeed, setLiveFootballFeed] = useState<LiveFootballFeedResult>({
+    state: 'unavailable',
+    matches: [],
+    message: 'Checking the live football feed…',
+  });
 
   // User Profile & Settings state
   const [userProfile, setUserProfile] = useState<UserProfile>(() => StorageService.getProfile());
@@ -48,6 +56,30 @@ export function useAppViewModel() {
       setShowSplash(false);
     }, 2400);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Check backend availability without treating sample fixtures as live data.
+  useEffect(() => {
+    let active = true;
+    checkLiveApiHealth().then(async (state) => {
+      if (!active) return;
+      setLiveApiConnection(state);
+      if (state !== 'configured') {
+        setLiveFootballFeed({
+          state: 'unavailable',
+          matches: [],
+          message: state === 'not-configured'
+            ? 'A live-data provider key has not been configured on the server.'
+            : 'The backend cannot be reached from this preview.',
+        });
+        return;
+      }
+      const result = await fetchLiveFootballMatches();
+      if (active) setLiveFootballFeed(result);
+    });
+    return () => {
+      active = false;
+    };
   }, []);
 
   // Sync dark mode class to documentElement
@@ -217,6 +249,8 @@ export function useAppViewModel() {
     setShowSplash,
     showApkModal,
     setShowApkModal,
+    liveApiConnection,
+    liveFootballFeed,
 
     // User & Preferences
     userProfile,
@@ -253,7 +287,7 @@ export function useAppViewModel() {
     // Data collections
     teams: TEAMS_DATA,
     filteredTeams,
-    matches: MATCHES_DATA,
+    matches,
     filteredMatches,
     travelSpots: TRAVEL_SPOTS_DATA,
     filteredTravelSpots,

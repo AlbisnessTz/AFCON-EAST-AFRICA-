@@ -1,11 +1,11 @@
 import { UserProfile, AppSettings } from '../types';
 
-const PROFILE_KEY = 'kickoff_africa_user_profile_v1';
-const SETTINGS_KEY = 'kickoff_africa_app_settings_v1';
-const USERS_KEY = 'kickoff_africa_registered_users_v1';
+const PROFILE_KEY = 'sportslab_africa_user_profile_v1';
+const SETTINGS_KEY = 'sportslab_africa_app_settings_v1';
+const USERS_KEY = 'sportslab_africa_registered_users_v1';
 
 export const DEFAULT_PROFILE: UserProfile = {
-  name: 'AFCON Supporter',
+  name: 'Sports Fan',
   email: '',
   password: '',
   country: 'Tanzania',
@@ -20,7 +20,7 @@ export const DEFAULT_PROFILE: UserProfile = {
 
 export const DEFAULT_SETTINGS: AppSettings = {
   language: 'en',
-  darkMode: false,
+  darkMode: true,
   pushMatchReminders: true,
   pushGoalAlerts: true,
   pushBreakingNews: true,
@@ -40,7 +40,6 @@ export const StorageService = {
   saveProfile(profile: UserProfile): void {
     try {
       localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
-      // If user is authenticated, also sync to registered users list
       if (profile.email) {
         const users = this.getRegisteredUsers();
         const existingIdx = users.findIndex(u => u.email.toLowerCase() === profile.email.toLowerCase());
@@ -60,7 +59,6 @@ export const StorageService = {
     try {
       const stored = localStorage.getItem(USERS_KEY);
       if (stored) return JSON.parse(stored);
-      // Seed default user if none stored
       const initial = [DEFAULT_PROFILE];
       localStorage.setItem(USERS_KEY, JSON.stringify(initial));
       return initial;
@@ -75,10 +73,7 @@ export const StorageService = {
     if (existing) {
       throw new Error('An account with this email address already exists. Please sign in instead.');
     }
-    const profileWithAuth: UserProfile = {
-      ...newUser,
-      isAuthenticated: true
-    };
+    const profileWithAuth: UserProfile = { ...newUser, isAuthenticated: true };
     users.push(profileWithAuth);
     try {
       localStorage.setItem(USERS_KEY, JSON.stringify(users));
@@ -97,20 +92,14 @@ export const StorageService = {
     if (!found) {
       throw new Error('Invalid email or password. Please check your credentials or register a new account.');
     }
-    const authenticatedProfile: UserProfile = {
-      ...found,
-      isAuthenticated: true
-    };
+    const authenticatedProfile: UserProfile = { ...found, isAuthenticated: true };
     this.saveProfile(authenticatedProfile);
     return authenticatedProfile;
   },
 
   logoutUser(): UserProfile {
     const current = this.getProfile();
-    const unauthenticated: UserProfile = {
-      ...current,
-      isAuthenticated: false
-    };
+    const unauthenticated: UserProfile = { ...current, isAuthenticated: false };
     try {
       localStorage.setItem(PROFILE_KEY, JSON.stringify(unauthenticated));
     } catch (e) {
@@ -122,7 +111,15 @@ export const StorageService = {
   getSettings(): AppSettings {
     try {
       const stored = localStorage.getItem(SETTINGS_KEY);
-      return stored ? JSON.parse(stored) : DEFAULT_SETTINGS;
+      if (!stored) return DEFAULT_SETTINGS;
+      const parsed = JSON.parse(stored);
+      // One-time migration from the former green/light theme to the new obsidian theme.
+      if (parsed.themeVersion !== 1) {
+        const migrated = { ...DEFAULT_SETTINGS, ...parsed, darkMode: true, themeVersion: 1 };
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(migrated));
+        return migrated;
+      }
+      return { ...DEFAULT_SETTINGS, ...parsed };
     } catch {
       return DEFAULT_SETTINGS;
     }
@@ -136,4 +133,3 @@ export const StorageService = {
     }
   }
 };
-

@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Trophy, Shield, ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Globe2, Trophy, Sparkles } from 'lucide-react';
 
 interface SplashScreenProps {
   onDismiss: () => void;
 }
 
 export const SplashScreen: React.FC<SplashScreenProps> = ({ onDismiss }) => {
-  const [countdown, setCountdown] = useState({ days: 342, hours: 14, mins: 28, secs: 45 });
+  const [seconds, setSeconds] = useState(3);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev.secs > 0) return { ...prev, secs: prev.secs - 1 };
-        return { ...prev, secs: 59, mins: prev.mins > 0 ? prev.mins - 1 : 59 };
-      });
+    const timer = window.setInterval(() => {
+      setSeconds((value) => Math.max(0, value - 1));
     }, 1000);
-    return () => clearInterval(timer);
+    return () => window.clearInterval(timer);
   }, []);
 
   return (
@@ -24,83 +21,70 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onDismiss }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-gradient-to-b from-emerald-950 via-green-900 to-black text-white p-6 overflow-hidden select-none"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-between overflow-hidden bg-[#030406] p-6 text-white select-none"
     >
-      <div className="absolute -top-24 -left-24 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-amber-500/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-sky-400/[0.13] blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-cyan-300/[0.08] blur-3xl pointer-events-none" />
 
-      <div className="w-full flex justify-between items-center text-xs font-semibold tracking-wider text-emerald-300/80 pt-4">
-        <span className="flex items-center gap-1.5">
-          <Shield className="w-4 h-4 text-amber-400" /> AFRICAN FOOTBALL PLATFORM
+      <div className="z-10 flex w-full max-w-sm items-center justify-between pt-4 text-xs font-semibold tracking-wider text-slate-400">
+        <span className="flex items-center gap-2">
+          <Globe2 className="h-4 w-4 text-sky-300" /> GLOBAL SPORTS PLATFORM
         </span>
-        <span className="bg-emerald-800/60 backdrop-blur-md px-2.5 py-1 rounded-full text-emerald-200 border border-emerald-700/50">
-          v0.1.0
+        <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-slate-300">
+          v0.2.0
         </span>
       </div>
 
-      <div className="flex flex-col items-center text-center my-auto space-y-6 max-w-sm">
+      <div className="z-10 my-auto flex max-w-sm flex-col items-center space-y-7 text-center">
         <motion.div
-          initial={{ scale: 0.8, rotate: -10 }}
+          initial={{ scale: 0.8, rotate: -8 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ type: 'spring', stiffness: 200, damping: 15 }}
           className="relative"
         >
-          <div className="w-28 h-28 rounded-3xl bg-gradient-to-tr from-amber-500 via-emerald-600 to-green-400 p-1 shadow-2xl shadow-emerald-500/30 flex items-center justify-center">
-            <div className="w-full h-full bg-emerald-950 rounded-[22px] flex items-center justify-center relative overflow-hidden">
-              <Trophy className="w-14 h-14 text-amber-400 drop-shadow-[0_4px_10px_rgba(245,158,11,0.5)]" />
+          <div className="flex h-28 w-28 items-center justify-center rounded-[30px] border border-sky-300/20 bg-gradient-to-br from-sky-300 via-cyan-500 to-slate-200 p-1 shadow-[0_0_65px_rgba(56,189,248,0.15)]">
+            <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-[26px] bg-[#030406]">
+              <Trophy className="h-14 w-14 text-amber-400" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
           </div>
           <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
+            animate={{ scale: [1, 1.18, 1] }}
             transition={{ repeat: Infinity, duration: 2 }}
-            className="absolute -bottom-2 -right-2 bg-amber-400 text-black p-2 rounded-full shadow-lg"
+            className="absolute -bottom-2 -right-2 rounded-full bg-amber-400 p-2 text-black shadow-lg"
           >
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="h-4 w-4" />
           </motion.div>
         </motion.div>
 
         <div className="space-y-2">
-          <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-amber-300 via-emerald-200 to-white bg-clip-text text-transparent">
-            KickOff Africa
+          <h1 className="bg-gradient-to-r from-white via-slate-100 to-sky-300 bg-clip-text text-4xl font-black tracking-tight text-transparent">
+            SportsLab Africa
           </h1>
-          <p className="text-sm text-emerald-200/80 font-medium">
-            Your Football Home Across Africa
+          <p className="text-sm font-medium text-slate-400">
+            Your Home for Global Sports
           </p>
         </div>
 
-        <div className="w-full bg-emerald-900/60 backdrop-blur-md border border-emerald-700/50 rounded-2xl p-4 space-y-2">
-          <div className="text-[11px] uppercase tracking-wider text-amber-300 font-bold">
-            Countdown to AFCON Kick-Off
+        <div className="w-full rounded-2xl border border-white/10 bg-white/[0.035] p-4 backdrop-blur-md">
+          <div className="mb-2 text-[11px] font-bold uppercase tracking-wider text-sky-300">
+            Building the future of global sports
           </div>
-          <div className="grid grid-cols-4 gap-2 text-center">
-            {[
-              ['days', 'Days'],
-              ['hours', 'Hours'],
-              ['mins', 'Mins'],
-              ['secs', 'Secs']
-            ].map(([key, label]) => (
-              <div key={key} className="bg-emerald-950/80 p-2 rounded-xl border border-emerald-800/50">
-                <span className={`text-xl font-black ${key === 'secs' ? 'text-amber-400' : 'text-white'}`}>
-                  {countdown[key as keyof typeof countdown]}
-                </span>
-                <span className="block text-[10px] text-emerald-300/70 uppercase">{label}</span>
-              </div>
-            ))}
-          </div>
+          <p className="text-xs leading-5 text-slate-400">
+            Football first, followed by global sports scores, teams, news, tournaments, travel and fan experiences.
+          </p>
         </div>
       </div>
 
-      <div className="w-full space-y-4 pb-2 max-w-sm">
+      <div className="z-10 w-full max-w-sm space-y-4 pb-2">
         <button
           onClick={onDismiss}
-          className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-xl shadow-amber-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+          className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-sky-300 to-cyan-400 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-[0_0_28px_rgba(56,189,248,0.2)] transition-all hover:from-sky-200 hover:to-cyan-300 active:scale-[0.98]"
         >
-          Enter KickOff Africa <ArrowRight className="w-4 h-4" />
+          Enter SportsLab Africa <ArrowRight className="h-4 w-4" />
         </button>
-
-        <div className="text-center text-[11px] text-emerald-300/80 font-medium">
-          KickOff Africa • Football, News, Fans & Travel
+        <div className="text-center text-[11px] font-medium text-slate-600">
+          {seconds > 0 ? `Launching in ${seconds}…` : 'Sports • Data • Fans • Africa'}
         </div>
       </div>
     </motion.div>

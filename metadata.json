@@ -1,6 +1,6 @@
 {
-  "name": "KickOff Africa",
-  "description": "Professional Android & Web Application for Football Fans and AFCON Visitors",
+  "name": "SportsLab Africa",
+  "description": "Professional African sports platform for football, scores, news, teams, tournaments, travel and fan experiences.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

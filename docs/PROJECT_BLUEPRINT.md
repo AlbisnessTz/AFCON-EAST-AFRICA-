@@ -1,41 +1,43 @@
-# KickOff Africa — Project Blueprint
+# SportsLab Africa — Project Blueprint
 
 ## Product Vision
-KickOff Africa is a production-oriented African football platform combining live football information, AFCON and African competitions, news, teams, travel information and fan community features.
+SportsLab Africa is a production-oriented African sports platform. Football is the first product area, combining live football information, African competitions, news, teams, travel information and fan community features. The architecture must allow other sports to be added later without rebuilding the platform.
 
 The product is designed as a real business application. Development-only mock data must remain clearly separated from production data sources and must never be presented as live information.
 
 ## Core Areas
-1. Home — featured matches, live/upcoming matches, latest news and tournament highlights.
+1. Home — featured matches, live/upcoming matches, latest news and sports highlights.
 2. Matches — fixtures, live scores, results, match details, H2H, form and statistics.
-3. Tournaments — AFCON, qualifiers and selected African competitions with groups and knockout stages.
+3. Competitions — AFCON, qualifiers and selected African competitions with groups and knockout stages.
 4. Teams — national/club teams, squads, profiles, statistics and form.
-5. News — football news organized by competition, team and topic.
+5. News — sports news organized by competition, team and topic.
 6. Fan Zone — predictions, polls, favourites and future community discussions.
 7. Travel — host cities, stadiums and practical match-day information.
 8. Profile — favourites, saved content and notifications.
 9. Settings — language, appearance, notification and data preferences.
+10. Future sports — architecture reserved for basketball, athletics and other African sports.
 
 ## Technical Direction
 - Frontend: React + TypeScript + Vite.
 - UI: existing Tailwind-based styling and Lucide icons.
 - Data: development mock data is temporary and isolated under `src/data`.
-- API boundary: remote football data must enter through typed service interfaces rather than direct provider imports inside screens.
+- API boundary: remote sports data must enter through typed service interfaces rather than direct provider imports inside screens.
 - Authentication: the current local prototype is temporary; production authentication will be introduced behind the application boundary.
-- Backend: persistent backend services will provide matches, teams, tournaments, news, users, predictions and notifications.
+- Backend: persistent backend services will provide matches, teams, competitions, news, users, predictions and notifications.
 - Admin: a protected administration area will manage operational content and business settings.
 - PWA: prepare the application for installation on mobile and desktop.
 - Monetization: prepare controlled placements for advertising, sponsorships and future premium features.
 
 ## Development Milestones
 ### M1 — Foundation
+- Establish SportsLab Africa branding.
 - Document architecture and product scope.
-- Establish reusable football data contracts.
+- Establish reusable sports/football data contracts.
 - Establish a service boundary for remote data.
 - Preserve existing screens while preparing them for real data.
 
 ### M2 — Football Core
-- Tournament/group/standings model.
+- Competition/group/standings model.
 - Fixtures and results model.
 - Team and player model improvements.
 - Match events and statistics contracts.
@@ -64,6 +66,10 @@ The product is designed as a real business application. Development-only mock da
 - Production deployment and monitoring.
 - Backup and recovery procedures.
 - Privacy policy, terms and other required business/legal pages before public launch.
+
+### M7 — Multi-Sport Expansion
+- Introduce additional sports only after the football foundation is stable.
+- Reuse shared competition, team, player, event and notification contracts where appropriate.
 
 ## Engineering Rules
 - Do not duplicate business logic inside screens.
