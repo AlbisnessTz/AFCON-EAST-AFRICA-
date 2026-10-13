@@ -205,8 +205,8 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
   const handleInstantSignIn = () => {
     setAuthError(null);
     onUpdateProfile({
-      name: 'AFCON Supporter',
-      email: 'fan@afcon2027.com',
+      name: 'Sports Supporter',
+      email: '',
       country: 'Tanzania',
       language: 'English',
       favoriteTeamId: 'tan',
