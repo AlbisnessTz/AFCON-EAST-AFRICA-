@@ -133,64 +133,14 @@ export const AuthGateModal: React.FC<AuthGateModalProps> = ({
     }
   };
 
-  // Loading state for social authentication
+  // These provider buttons are deliberately non-authenticating until OAuth/OTP
+  // providers and server-side verification are configured. Never fabricate identities.
   const [connectingProvider, setConnectingProvider] = useState<string | null>(null);
 
   const handleSocialSignIn = (provider: 'google' | 'apple' | 'phone') => {
-    setErrorMsg(null);
-    setConnectingProvider(
-      provider === 'google' ? 'Google' : provider === 'apple' ? 'Apple ID' : 'Mobile SMS'
-    );
-
-    setTimeout(() => {
-      let socialProfile: UserProfile;
-      if (provider === 'google') {
-        socialProfile = {
-          name: 'Google Supporter',
-          email: 'google.fan@afcon2027.com',
-          password: 'google_oauth_token',
-          country: 'Tanzania',
-          language: 'English',
-          favoriteTeamId: 'tan',
-          photoUrl: PRESET_AVATARS[0],
-          avatarType: 'preset',
-          isAuthenticated: true,
-          savedMatches: [],
-          savedArticles: []
-        };
-      } else if (provider === 'apple') {
-        socialProfile = {
-          name: 'Apple Supporter',
-          email: 'apple.fan@icloud.com',
-          password: 'apple_oauth_token',
-          country: 'Kenya',
-          language: 'English',
-          favoriteTeamId: 'ken',
-          photoUrl: PRESET_AVATARS[1],
-          avatarType: 'preset',
-          isAuthenticated: true,
-          savedMatches: [],
-          savedArticles: []
-        };
-      } else {
-        socialProfile = {
-          name: 'Mobile Supporter',
-          email: 'mobile.fan@kickoff.africa',
-          password: 'phone_otp_verified',
-          country: 'Uganda',
-          language: 'Kiswahili',
-          favoriteTeamId: 'uga',
-          photoUrl: PRESET_AVATARS[2],
-          avatarType: 'preset',
-          isAuthenticated: true,
-          savedMatches: [],
-          savedArticles: []
-        };
-      }
-
-      setConnectingProvider(null);
-      onUpdateProfile(socialProfile);
-    }, 800);
+    const providerName = provider === 'google' ? 'Google' : provider === 'apple' ? 'Apple' : 'phone verification';
+    setConnectingProvider(null);
+    setErrorMsg(`${providerName} sign-in is not connected yet. No account was created. Use email registration for this prototype; provider sign-in must be configured before it can authenticate real users.`);
   };
 
   return (
@@ -205,17 +155,17 @@ export const AuthGateModal: React.FC<AuthGateModalProps> = ({
             </div>
             <div>
               <h2 className="text-base font-black tracking-tight text-white flex items-center gap-1.5">
-                AFCON PAMOJA 2027 <Trophy className="w-4 h-4 text-amber-400" />
+                SportsLab Africa <Trophy className="w-4 h-4 text-amber-400" />
               </h2>
               <p className="text-[11px] text-emerald-200/90 font-medium">
-                Official East Africa Supporter Passport
+                Global Sports Fan Account
               </p>
             </div>
           </div>
 
           <div className="mt-3 flex items-center gap-2 text-[10px] bg-emerald-950/60 p-2 rounded-xl border border-emerald-800/80 text-emerald-300">
             <ShieldCheck className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-            <span>Sign in or create an account to activate your official Fan Passport</span>
+            <span>Sign in or create your SportsLab Africa profile</span>
           </div>
         </div>
 
@@ -527,7 +477,7 @@ export const AuthGateModal: React.FC<AuthGateModalProps> = ({
           {/* Security Guarantee Note */}
           <div className="pt-2 border-t border-slate-100 dark:border-slate-800 text-center">
             <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">
-              🔒 Encrypted Supporter Authentication • East Africa AFCON Pamoja 2027
+              Prototype account storage • Google, Apple and phone verification are not connected yet
             </p>
           </div>
 

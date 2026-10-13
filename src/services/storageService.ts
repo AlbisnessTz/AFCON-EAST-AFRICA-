@@ -4,6 +4,17 @@ const PROFILE_KEY = 'sportslab_africa_user_profile_v1';
 const SETTINGS_KEY = 'sportslab_africa_app_settings_v1';
 const USERS_KEY = 'sportslab_africa_registered_users_v1';
 
+const LEGACY_FAKE_AUTH_EMAILS = new Set([
+  'google.fan@afcon2027.com',
+  'apple.fan@icloud.com',
+  'mobile.fan@kickoff.africa',
+]);
+
+function isLegacyFakeProfile(profile: UserProfile): boolean {
+  return LEGACY_FAKE_AUTH_EMAILS.has((profile.email || '').toLowerCase()) ||
+    /^(Google|Apple|Mobile) Supporter$/i.test(profile.name || '');
+}
+
 export const DEFAULT_PROFILE: UserProfile = {
   name: 'Sports Fan',
   email: '',
@@ -31,7 +42,21 @@ export const StorageService = {
   getProfile(): UserProfile {
     try {
       const stored = localStorage.getItem(PROFILE_KEY);
-      return stored ? JSON.parse(stored) : DEFAULT_PROFILE;
+      if (!stored) return DEFAULT_PROFILE;
+      const profile = JSON.parse(stored) as UserProfile;
+      if (isLegacyFakeProfile(profile)) {
+        // Previous builds simulated social sign-in with invented identities.
+        // Retain personal bookmarks, but remove the fabricated login identity.
+        const migrated: UserProfile = {
+          ...DEFAULT_PROFILE,
+          savedMatches: profile.savedMatches || [],
+          savedArticles: profile.savedArticles || [],
+          userVotes: profile.userVotes || {},
+        };
+        localStorage.setItem(PROFILE_KEY, JSON.stringify(migrated));
+        return migrated;
+      }
+      return profile;
     } catch {
       return DEFAULT_PROFILE;
     }
@@ -58,7 +83,14 @@ export const StorageService = {
   getRegisteredUsers(): UserProfile[] {
     try {
       const stored = localStorage.getItem(USERS_KEY);
-      if (stored) return JSON.parse(stored);
+      if (stored) {
+        const parsed = JSON.parse(stored) as UserProfile[];
+        const cleaned = parsed.filter((profile) => !isLegacyFakeProfile(profile));
+        if (cleaned.length !== parsed.length) {
+          localStorage.setItem(USERS_KEY, JSON.stringify(cleaned));
+        }
+        return cleaned;
+      }
       const initial = [DEFAULT_PROFILE];
       localStorage.setItem(USERS_KEY, JSON.stringify(initial));
       return initial;
