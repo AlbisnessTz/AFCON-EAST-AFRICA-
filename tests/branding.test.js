@@ -37,3 +37,12 @@ test('old fabricated social profiles are removed during local migration', async 
   assert.match(storage, /isLegacyFakeProfile/);
   assert.match(storage, /Previous builds simulated social sign-in/);
 });
+
+test('active profile screen uses entered account names and has no hard-coded person sign-in', async () => {
+  const profile = await read('../src/components/ProfileScreen.tsx');
+  assert.match(profile, /name: regName\.trim\(\)/);
+  assert.match(profile, /name: 'Sports Supporter'/);
+  assert.match(profile, /Continue as Guest/);
+  assert.doesNotMatch(profile, /Instant Sign In as Albert Luwavi/);
+  assert.doesNotMatch(profile, /AFCON Supporter Passport|Favorite AFCON Team|East Africa Pamoja AFCON/);
+});
