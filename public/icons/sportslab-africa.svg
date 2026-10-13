@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#030406"/>
+  <rect x="18" y="18" width="476" height="476" rx="98" fill="none" stroke="#38bdf8" stroke-width="8" opacity=".8"/>
+  <path d="M256 86 302 180 406 195 331 267 349 370 256 321 163 370 181 267 106 195 210 180Z" fill="#0b1724" stroke="#67e8f9" stroke-width="12" stroke-linejoin="round"/>
+  <circle cx="256" cy="244" r="67" fill="#030406" stroke="#38bdf8" stroke-width="10"/>
+  <path d="m256 198 29 21-11 34h-36l-11-34z M227 219l-30 9 1 35 29 11 M285 219l30 9-1 35-29 11 M238 253l-18 31 27 22 M274 253l18 31-27 22" fill="#38bdf8" stroke="#38bdf8" stroke-width="6" stroke-linejoin="round"/>
+  <text x="256" y="438" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="800" fill="#f8fafc">SPORTSLAB</text>
+</svg>
