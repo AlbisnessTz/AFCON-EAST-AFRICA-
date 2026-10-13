@@ -238,10 +238,10 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
       <div className="space-y-4 pb-24 animate-fadeIn">
         <div>
           <h2 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> AFCON Supporter Passport
+            <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> SportsLab Africa Account
           </h2>
           <p className="text-xs text-slate-500 dark:text-emerald-300/80">
-            Sign in or register to customize your tournament experience
+            Sign in or register to personalize your global sports experience
           </p>
         </div>
 
@@ -281,8 +281,8 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
         {authMode === 'login' && (
           <form onSubmit={handleLoginSubmit} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-emerald-800/80 rounded-2xl p-4 shadow-sm space-y-4">
             <div className="text-center space-y-1">
-              <h3 className="text-sm font-black text-slate-900 dark:text-white">Welcome Back, Football Fan! ⚽</h3>
-              <p className="text-[11px] text-slate-500 dark:text-emerald-300/80">Access your saved matches, tickets & travel bookmarks</p>
+              <h3 className="text-sm font-black text-slate-900 dark:text-white">Welcome back</h3>
+              <p className="text-[11px] text-slate-500 dark:text-emerald-300/80">Access your saved matches, teams, news and travel bookmarks</p>
             </div>
 
             <div className="space-y-1">
@@ -317,7 +317,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
               type="submit"
               className="w-full py-3 rounded-xl bg-amber-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 hover:bg-amber-300 shadow-md active:scale-[0.98] transition-all"
             >
-              <LogIn className="w-4 h-4" /> Sign In to Passport
+              <LogIn className="w-4 h-4" /> Sign In to SportsLab Africa
             </button>
 
             {/* Quick Sign In Button */}
@@ -327,7 +327,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
                 onClick={handleInstantSignIn}
                 className="w-full py-2.5 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-200 font-bold text-xs border border-emerald-300 dark:border-emerald-800 flex items-center justify-center gap-2 hover:bg-emerald-200 dark:hover:bg-emerald-900 transition-all"
               >
-                <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Instant Sign In as Albert Luwavi
+                <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Continue as Guest
               </button>
             </div>
           </form>
@@ -338,7 +338,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
           <form onSubmit={handleRegisterSubmit} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-emerald-800/80 rounded-2xl p-4 shadow-sm space-y-4">
             <div className="text-center space-y-1">
               <h3 className="text-sm font-black text-slate-900 dark:text-white">Create Your Supporter Account 🎟️</h3>
-              <p className="text-[11px] text-slate-500 dark:text-emerald-300/80">Join East Africa Pamoja AFCON Fan Community</p>
+              <p className="text-[11px] text-slate-500 dark:text-emerald-300/80">Create your SportsLab Africa account</p>
             </div>
 
             {/* Photo Selection Component (Preset vs Upload) */}
@@ -523,7 +523,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
 
             {/* Favorite Team */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-700 dark:text-emerald-200">Favorite AFCON Team</label>
+              <label className="text-xs font-semibold text-slate-700 dark:text-emerald-200">Favorite Team</label>
               <select
                 value={regFavoriteTeam}
                 onChange={(e) => setRegFavoriteTeam(e.target.value)}
@@ -541,7 +541,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
               type="submit"
               className="w-full py-3 rounded-xl bg-amber-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 hover:bg-amber-300 shadow-md active:scale-[0.98] transition-all"
             >
-              <UserPlus className="w-4 h-4" /> Register & Activate Passport
+              <UserPlus className="w-4 h-4" /> Create Account
             </button>
           </form>
         )}
@@ -557,11 +557,11 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
           <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> Fan Profile & Identity
         </h2>
         <p className="text-xs text-slate-500 dark:text-emerald-300/80">
-          Personalize your supporter passport & preferred tournament team
+          Personalize your SportsLab Africa profile and favorite team
         </p>
       </div>
 
-      {/* Fan Passport Header Card */}
+      {/* Account Header Card */}
       <div className="bg-gradient-to-r from-emerald-900 to-green-950 p-5 rounded-3xl text-white shadow-xl border border-emerald-800 space-y-4 relative">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-4">
@@ -693,7 +693,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
                     onClick={() => onSelectTab('matches')}
                     className="mt-2 px-4 py-2 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded-xl transition-all inline-flex items-center gap-1.5 shadow-sm"
                   >
-                    Explore AFCON Fixtures <ArrowRight className="w-3.5 h-3.5" />
+                    Explore Matches <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 )}
               </div>
@@ -789,7 +789,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
                     onClick={() => onSelectTab('news')}
                     className="mt-2 px-4 py-2 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded-xl transition-all inline-flex items-center gap-1.5 shadow-sm"
                   >
-                    Browse AFCON News <ArrowRight className="w-3.5 h-3.5" />
+                    Browse Sports News <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 )}
               </div>
