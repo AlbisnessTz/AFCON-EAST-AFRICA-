@@ -8,7 +8,7 @@ interface ApkDownloadModalProps {
 export const ApkDownloadModal: React.FC<ApkDownloadModalProps> = ({ onClose }) => {
   const [copied, setCopied] = useState(false);
 
-  const gitCommitMessage = `git commit -m "feat(m1): KickOff Africa Milestone 1 - Android & Web Release v1.0.0"`;
+  const gitCommitMessage = `git commit -m "SportsLab Africa PWA install setup"`;
 
   const copyGitMessage = () => {
     navigator.clipboard.writeText(gitCommitMessage);
@@ -25,8 +25,8 @@ export const ApkDownloadModal: React.FC<ApkDownloadModalProps> = ({ onClose }) =
               <Smartphone className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-extrabold text-sm">KickOff Africa Mobile Install</h3>
-              <span className="text-[10px] text-amber-500 font-bold">v1.0.0 Production Mobile Package</span>
+              <h3 className="font-extrabold text-sm">SportsLab Africa — Install App</h3>
+              <span className="text-[10px] text-amber-500 font-bold">Progressive Web App</span>
             </div>
           </div>
           <button
@@ -40,16 +40,16 @@ export const ApkDownloadModal: React.FC<ApkDownloadModalProps> = ({ onClose }) =
         {/* APK Card */}
         <div className="bg-gradient-to-r from-emerald-900 to-green-950 p-4 rounded-2xl text-white space-y-3 border border-emerald-700">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-black text-amber-300">KickOffAfrica_v1.0.0_Release.apk</span>
-            <span className="text-[10px] bg-emerald-800 px-2 py-0.5 rounded text-emerald-200">18.4 MB</span>
+            <span className="text-xs font-black text-amber-300">SportsLab-Africa-PWA</span>
+            <span className="text-[10px] bg-emerald-800 px-2 py-0.5 rounded text-emerald-200">Web app</span>
           </div>
 
           <p className="text-xs text-emerald-200/90 leading-relaxed">
-            Production mobile build package configured with progressive web app (PWA) manifest & offline data caching.
+            Install SportsLab Africa from your browser. The PWA manifest and offline shell are being configured; this panel does not represent a published APK.
           </p>
 
           <div className="flex items-center gap-2 text-[10px] text-amber-300 font-semibold">
-            <ShieldCheck className="w-4 h-4 text-amber-400" /> Verified & Digitally Signed Release
+            <ShieldCheck className="w-4 h-4 text-amber-400" /> No signed APK has been published
           </div>
         </div>
 
@@ -64,13 +64,10 @@ export const ApkDownloadModal: React.FC<ApkDownloadModalProps> = ({ onClose }) =
               <strong>PWA Add to Home Screen (Instant APK experience):</strong> Open this app in Chrome/Edge on your Android phone and tap <em>&quot;Add to Home Screen&quot;</em> or <em>&quot;Install App&quot;</em>.
             </li>
             <li>
-              <strong>Export Full Source Code:</strong> Use the top-right Settings menu in AI Studio to export as ZIP or sync directly with your GitHub repository.
+              <strong>Install availability:</strong> Use your browser menu and choose “Install app” or “Add to Home Screen” when offered.
             </li>
             <li>
-              <strong>Native .NET MAUI Build command:</strong>
-              <div className="mt-1 p-2 bg-slate-950 text-emerald-300 font-mono text-[10px] rounded-lg border border-slate-800">
-                dotnet build -c Release -f net8.0-android
-              </div>
+              <strong>Note:</strong> A native Android APK requires a separate Android build and signing process; this project does not currently publish one.
             </li>
           </ol>
         </div>
@@ -78,7 +75,7 @@ export const ApkDownloadModal: React.FC<ApkDownloadModalProps> = ({ onClose }) =
         {/* Recommended Git Commit Message */}
         <div className="space-y-1.5">
           <label className="text-[11px] font-bold text-slate-700 dark:text-emerald-200 block">
-            Milestone 1 Git Commit Message
+            Project note
           </label>
           <div className="flex items-center justify-between p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl font-mono text-[10px] text-slate-800 dark:text-emerald-300 border border-slate-200 dark:border-slate-700">
             <span className="truncate pr-2">{gitCommitMessage}</span>
@@ -96,7 +93,7 @@ export const ApkDownloadModal: React.FC<ApkDownloadModalProps> = ({ onClose }) =
           onClick={onClose}
           className="w-full py-2.5 rounded-xl bg-emerald-700 text-white font-bold text-xs"
         >
-          Close Installation Panel
+          Close Install Panel
         </button>
       </div>
     </div>
