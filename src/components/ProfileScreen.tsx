@@ -985,10 +985,10 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
           </select>
         </div>
 
-        {/* Favorite AFCON Team */}
+        {/* Favorite Team */}
         <div className="space-y-1">
           <label className="text-xs font-semibold text-slate-700 dark:text-emerald-200">
-            Favorite AFCON Team
+            Favorite Team
           </label>
           <select
             value={editFavoriteTeam}
