@@ -1,0 +1,22 @@
+{
+  "id": "/",
+  "name": "SportsLab Africa",
+  "short_name": "SportsLab",
+  "description": "Your global sports hub for scores, teams, competitions, news and fan experiences.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#030406",
+  "theme_color": "#030406",
+  "categories": ["sports", "news", "entertainment"],
+  "icons": [
+    {
+      "src": "/icons/sportslab-africa.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
