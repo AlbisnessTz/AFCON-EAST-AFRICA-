@@ -37,15 +37,15 @@ export const ApkDownloadModal: React.FC<ApkDownloadModalProps> = ({ onClose }) =
           </button>
         </div>
 
-        {/* APK Card */}
+        {/* PWA install information */}
         <div className="bg-gradient-to-r from-emerald-900 to-green-950 p-4 rounded-2xl text-white space-y-3 border border-emerald-700">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-black text-amber-300">SportsLab-Africa-PWA</span>
+            <span className="text-xs font-black text-amber-300">Progressive Web App</span>
             <span className="text-[10px] bg-emerald-800 px-2 py-0.5 rounded text-emerald-200">Web app</span>
           </div>
 
           <p className="text-xs text-emerald-200/90 leading-relaxed">
-            Install SportsLab Africa from your browser. The PWA manifest and offline shell are being configured; this panel does not represent a published APK.
+            Install SportsLab Africa from your browser. The PWA manifest and offline shell are included in this codebase. Offline use depends on a successful first load and browser support; this is not an APK.
           </p>
 
           <div className="flex items-center gap-2 text-[10px] text-amber-300 font-semibold">
@@ -53,7 +53,7 @@ export const ApkDownloadModal: React.FC<ApkDownloadModalProps> = ({ onClose }) =
           </div>
         </div>
 
-        {/* Installation Steps */}
+        {/* Installation guidance */}
         <div className="space-y-2 text-xs">
           <h4 className="font-bold text-slate-800 dark:text-emerald-100 uppercase tracking-wider text-[11px]">
             Installation & Mobile Deployment Steps
@@ -61,7 +61,7 @@ export const ApkDownloadModal: React.FC<ApkDownloadModalProps> = ({ onClose }) =
 
           <ol className="space-y-2 text-slate-600 dark:text-emerald-200/90 list-decimal list-inside text-[11px] leading-relaxed">
             <li>
-              <strong>PWA Add to Home Screen (Instant APK experience):</strong> Open this app in Chrome/Edge on your Android phone and tap <em>&quot;Add to Home Screen&quot;</em> or <em>&quot;Install App&quot;</em>.
+              <strong>Install SportsLab Africa:</strong> Open this app in Chrome/Edge on your Android phone and tap <em>&quot;Add to Home Screen&quot;</em> or <em>&quot;Install App&quot;</em>.
             </li>
             <li>
               <strong>Install availability:</strong> Use your browser menu and choose “Install app” or “Add to Home Screen” when offered.
